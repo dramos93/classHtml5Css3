@@ -1,15 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-    <h5>Teste</h5>
+    <header></header>
+    <nav>
+        <itemMenu>
+            <img src="./img/icons/home.png" class="icon" alt="home">
+            <p class="title-menu">HOME</p>
+        </itemMenu>
+        <itemMenu>
+            <img src="./img/icons/calendar.png" class="icon" alt="Calendario">
+            <p class="title-menu">CALENDÁRIO</p>
+        </itemMenu>
+        <itemMenu>
+            <img src="./img/icons/adjust.png" class="icon" alt="Ajustes">
+            <p class="title-menu">AJUSTES</p>
+        </itemMenu>
+        <itemMenu>
+            <img src="./img/icons/photograph.png" class="icon" alt="Fotos">
+            <p class="title-menu">FOTOS</p>
+        </itemMenu>
+        <itemMenu>
+            <img src="./img/icons/users.png" class="icon" alt="Fotos">
+            <p class="title-menu">USUÁRIOS</p>
+        </itemMenu>
+    </nav>
+    <content>
+        <div class="div">
+            <div>
+                <h2 class="title">My First Square</h2>
+            </div>
+            <div class="square-master" id="square-master">
+                <div class="square" id="square">
 
+                </div>
+            </div>
+        </div>
+    </content>
+    <footer> </footer>
+
+    <script>
+        let scale = document.getElementById("square").style;
+        let squareHeight = document.getElementById("square-master").offsetHeight;
+        let squareWidth = document.getElementById("square-master").offsetWidth;
+        let x = 0, y = 0, distance = 60;
+        let interval;
+
+        let position = {
+            38() {
+                console.log("x: " + x + " | y: " + y)
+                if (y <= 0) {
+                    scale.transform = `translate(${x}px, ${y = squareHeight - distance}px)`;
+                } else {
+                    scale.transform = `translate(${x}px, ${y -= distance}px)`;
+                }
+            },
+            40() {
+                console.log("x: " + x + " | y: " + y)
+                if (y >= squareHeight - distance) {
+                    scale.transform = `translate(${x}px, ${(y = 0)}px)`;
+                } else {
+                    scale.transform = `translate(${x}px, ${y += distance}px)`;
+                }
+            },
+            37() {
+                console.log("x: " + x + " | y: " + y)
+                if (x <= 0) {
+                    scale.transform = `translate(${(x = squareWidth - distance)}px, ${y}px)`;
+                } else {
+                    scale.transform = `translate(${x -= distance}px, ${y}px)`;
+                }
+            },
+            39() {
+                console.log("x: " + x + " | y: " + y)
+                if (x >= squareWidth - distance) {
+                    scale.transform = `translate(${(x = 0)}px, ${y}px)`;
+
+                } else {
+                    scale.transform = `translate(${x += distance}px, ${y}px)`;
+                }
+            },
+        };
+
+        document.addEventListener("keydown", function (e) {
+            clearTimeout(interval);
+            if (!!position[e.keyCode]) {
+                position[e.keyCode]();
+                interval = clearTimeout(() => {
+                    position[e.keyCode]();
+                }, 350);
+            }
+            else {
+                console.log("Tecla Inválida");
+            }
+        });
+
+    </script>
 </body>
 
 </html>
