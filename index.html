@@ -89,10 +89,10 @@
         };
 
         document.addEventListener("keydown", function (e) {
-            clearTimeout(interval);
             if (!!position[e.keyCode]) {
+                clearInterval(interval);
                 position[e.keyCode]();
-                interval = clearTimeout(() => {
+                interval = setInterval(() => {
                     position[e.keyCode]();
                 }, 350);
             }
